@@ -21,7 +21,7 @@ class AppColors {
 
   // Status Colors
   static const Color success = Colors.green;
-  static const Color error = Color(0xFFFF0000);
+  static const Color error = Color(0xFFF8475E);
 
   // Shadow Colors
   static Color shadowColor = Colors.grey.withOpacity(0.1);
