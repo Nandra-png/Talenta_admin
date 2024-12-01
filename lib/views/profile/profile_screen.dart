@@ -18,85 +18,94 @@ class ProfileScreen extends StatelessWidget {
     final profileController = Get.put(ProfileController());
     final loginController = Get.put(LoginController());
 
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColors.background,
+        body: Column(
           children: [
-            const SizedBox(height: AppSizes.spaceXL * 3),
+            // const WelcomeSign(),
+            const SizedBox(height: AppSizes.spaceXL * 1),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      // ProfileImagePicker
+                      Obx(() => ProfileImagePicker(
+                        model: loginController.getProfileImagePickerModel(context),
+                      )),
 
-            // ProfileImagePicker
-            Obx(() => ProfileImagePicker(
-                  model: loginController.getProfileImagePickerModel(context),
-                )),
+                      const SizedBox(height: AppSizes.spaceXS),
 
-            const SizedBox(height: AppSizes.spaceXS),
+                      CustomTextPairWidget(
+                        model: loginController.getCustomTextPair(),
+                      ),
 
-            CustomTextPairWidget(
-              model: loginController.getCustomTextPair(),
-            ),
+                      const SizedBox(height: AppSizes.spaceXS),
 
-            const SizedBox(height: AppSizes.spaceM),
+                      // Row untuk NIS dan Kelompok
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: AppSizes.paddingXL),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: TextPairWidget(
+                                model: profileController.getTextPair('NIS'),
+                                boxStyle: BoxStyle.border,
+                              ),
+                            ),
+                            SizedBox(width: AppSizes.spaceXS),
+                            Expanded(
+                              child: TextPairWidget(
+                                model: profileController.getTextPair('Kelompok'),
+                                boxStyle: BoxStyle.border,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
 
-            // Row untuk NIS dan Kelompok
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: AppSizes.paddingXL),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextPairWidget(
-                      model: profileController.getTextPair('NIS'),
-                      boxStyle: BoxStyle.border,
-                    ),
+                      const SizedBox(height: AppSizes.spaceS),
+
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: AppSizes.paddingXL),
+                        child: Column(
+                          children: [
+                            TextPairWidget(
+                              model: profileController.getTextPair('Nama Lengkap'),
+                            ),
+                            const SizedBox(height: AppSizes.spaceS),
+                            TextPairWidget(
+                              model: profileController.getTextPair('Tempat, Tanggal Lahir'),
+                            ),
+                            const SizedBox(height: AppSizes.spaceS),
+                            TextPairWidget(
+                              model: profileController.getTextPair('Alamat'),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      const SizedBox(height: AppSizes.spaceS),
+
+                      // Logout Button
+                      SizedBox(
+                        width: AppSizes.profileCardWidth,
+                        child: ReusableButton(
+                          buttonText: "Logout",
+                          icon: Icons.logout,
+                          onPressed: () {
+                            loginController.onLogoutPressed(context);
+                          },
+                          backgroundColor: AppColors.error,
+                          textColor: AppColors.textLight,
+                        ),
+                      ),
+                      const SizedBox(height: AppSizes.spaceS),
+                    ],
                   ),
-                  SizedBox(width: AppSizes.spaceM),
-                  Expanded(
-                    child: TextPairWidget(
-                      model: profileController.getTextPair('Kelompok'),
-                      boxStyle: BoxStyle.border,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            const SizedBox(height: AppSizes.spaceM),
-
-            // Informasi profil tambahan dengan padding horizontal
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: AppSizes.paddingXL),
-              child: Column(
-                children: [
-                  TextPairWidget(
-                    model: profileController.getTextPair('Nama Lengkap'),
-                  ),
-                  const SizedBox(height: AppSizes.spaceS),
-                  TextPairWidget(
-                    model:
-                        profileController.getTextPair('Tempat, Tanggal Lahir'),
-                  ),
-                  const SizedBox(height: AppSizes.spaceS),
-                  TextPairWidget(
-                    model: profileController.getTextPair('Alamat'),
-                  ),
-                ],
-              ),
-            ),
-
-            const SizedBox(height: AppSizes.spaceL),
-
-            // Logout Button
-            SizedBox(
-              width: 150,
-              child: ReusableButton(
-                buttonText: "Logout",
-                icon: Icons.logout,
-                onPressed: () {
-                  loginController.onLogoutPressed(context);
-                },
-                backgroundColor: Colors.red,
-                textColor: Colors.white,
+                ),
               ),
             ),
           ],

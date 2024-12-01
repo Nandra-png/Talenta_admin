@@ -13,6 +13,8 @@ import '../views/login/login_pick_image.dart';
 import '../views/login/login.dart';
 
 class LoginController extends GetxController {
+  var uploadedImages = <String>[].obs;
+
   // Login model for state management
   var loginModel = LoginModel().obs;
 
@@ -164,6 +166,21 @@ class LoginController extends GetxController {
       profileImage.value = pickedFile.path;
       isImagePicked.value = true;
     }
+  }
+
+  Future<void> pickMultipleImages(BuildContext context) async {
+    final picker = ImagePicker();
+    final List<XFile>? pickedFiles = await picker.pickMultiImage();
+
+    if (pickedFiles != null) {
+      for (var file in pickedFiles) {
+        uploadedImages.add(file.path);
+      }
+    }
+  }
+
+  void removeImage(int index) {
+    uploadedImages.removeAt(index);
   }
 
   static Widget buildOption({
