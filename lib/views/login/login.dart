@@ -52,6 +52,7 @@ class LoginScreen extends StatelessWidget {
                       // Login button
                       ReusableButton(
                         buttonText: 'Login',
+                    
                         icon: Icons.arrow_forward_ios_rounded,
                         onPressed: () => controller.onLoginPressed(context), // Logika login di controller
                       ),

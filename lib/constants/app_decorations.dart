@@ -17,21 +17,12 @@ class AppDecorations {
   );
 
   static BoxDecoration iconContainerDecoration = BoxDecoration(
-    color: AppColors.primary.withOpacity(0.1),
+    color: AppColors.secondary.withOpacity(0.1),
     borderRadius: BorderRadius.circular(AppSizes.radiusM),
   );
 
-  static BoxDecoration broadcastDecoration = BoxDecoration(
-    gradient: const LinearGradient(
-      begin: Alignment.centerLeft,
-      end: Alignment.centerRight,
-      colors: [AppColors.primaryLight, Color(0xFFD5DDFF)],
-    ),
-    borderRadius: BorderRadius.circular(AppSizes.radiusL),
-  );
-
   static BoxDecoration classCardDecoration = BoxDecoration(
-    color: AppColors.primaryLight,
+    color: AppColors.secondaryLight,
     borderRadius: BorderRadius.circular(AppSizes.radiusL),
     boxShadow: [
       BoxShadow(
@@ -48,7 +39,7 @@ class AppDecorations {
   );
 
   static BoxDecoration categoryLineDecoration = BoxDecoration(
-    color: AppColors.primary,
+    color: AppColors.secondary,
     borderRadius: BorderRadius.circular(AppSizes.radiusS),
   );
 
@@ -56,4 +47,4 @@ class AppDecorations {
     color: AppColors.cardBackground,
     borderRadius: BorderRadius.circular(AppSizes.radiusXL),
   );
-} 
+}

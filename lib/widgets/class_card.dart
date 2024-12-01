@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:talentaku/models/class_event.dart';
 import 'package:talentaku/constants/app_colors.dart';
 import 'package:talentaku/constants/app_text_styles.dart';
 import 'package:talentaku/constants/app_sizes.dart';
 import 'package:talentaku/constants/app_decorations.dart';
-import 'package:talentaku/widgets/info_popup.dart';
+import 'package:talentaku/views/laporan_siswa/detail_class_screen.dart';
 
 class ClassCard extends StatelessWidget {
   final ClassEvent classEvent;
@@ -17,14 +18,7 @@ class ClassCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        InfoPopup.show(
-          title: 'Fitur Dalam Pengembangan',
-          message: 'Mohon maaf, fitur kelas belum tersedia saat ini. Silakan coba lagi nanti.',
-          icon: Icons.construction,
-          iconColor: AppColors.primaryDark,
-        );
-      },
+      onTap: () => Get.to(() => const ClassDetailScreen()),
       child: Container(
         width: double.infinity,
         height: AppSizes.classCardHeight,
@@ -37,7 +31,8 @@ class ClassCard extends StatelessWidget {
               decoration: AppDecorations.classCardDecoration,
             ),
             Padding(
-              padding: EdgeInsets.only(left: AppSizes.paddingXL, top: AppSizes.paddingXL),
+              padding: EdgeInsets.only(
+                  left: AppSizes.paddingXL, top: AppSizes.paddingXL),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

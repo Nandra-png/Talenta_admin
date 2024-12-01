@@ -24,14 +24,12 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const SizedBox(height: AppSizes.spaceXL),
-            const WelcomeSign(),
-            const SizedBox(height: AppSizes.spaceL),
+            const SizedBox(height: AppSizes.spaceXL * 3),
 
             // ProfileImagePicker
             Obx(() => ProfileImagePicker(
-              model: loginController.getProfileImagePickerModel(context),
-            )),
+                  model: loginController.getProfileImagePickerModel(context),
+                )),
 
             const SizedBox(height: AppSizes.spaceXS),
 

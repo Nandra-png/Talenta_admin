@@ -16,15 +16,22 @@ class WelcomeSign extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      height: AppSizes.welcomeSignHeight,
-      margin: EdgeInsets.symmetric(horizontal: AppSizes.paddingXL),
-      child: Stack(
-        children: [
-          // Logo
-          Positioned(
-            left: AppSizes.paddingXL,
-            top: AppSizes.paddingL,
-            child: Container(
+      height: 110,
+      decoration: BoxDecoration(
+        color: AppColors.primary,
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(AppSizes.radiusXXL),
+          bottomRight: Radius.circular(AppSizes.radiusXXL),
+        ),
+      ),
+      child: Container(
+        width: double.infinity,
+        height: AppSizes.welcomeSignHeight,
+        margin: EdgeInsets.symmetric(horizontal: AppSizes.paddingXL),
+        child: Row(
+          children: [
+            // Logo
+            Container(
               width: AppSizes.logoSize,
               height: AppSizes.logoSize,
               decoration: const BoxDecoration(
@@ -34,32 +41,33 @@ class WelcomeSign extends StatelessWidget {
                 ),
               ),
             ),
-          ),
 
-          // Welcome Text
-          Positioned(
-            left: AppSizes.logoSize + AppSizes.paddingXL * 2,
-            top: AppSizes.paddingL,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Selamat Datang,',
-                  style: AppTextStyles.bodySmall,
-                ),
-                Text(
-                  controller.userName,
-                  style: AppTextStyles.heading1,
-                ),
-              ],
+            SizedBox(width: AppSizes.paddingXL),
+
+            // Welcome Text
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Selamat Datang,',
+                    style: AppTextStyles.bodySmall.copyWith(
+                      color: AppColors.textLight,
+                    ),
+                  ),
+                  Text(
+                    controller.userName,
+                    style: AppTextStyles.heading1.copyWith(
+                      color: AppColors.textLight,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
 
-          // Notification Button
-          Positioned(
-            right: 0,
-            top: AppSizes.paddingL,
-            child: GestureDetector(
+            // Notification Button
+            GestureDetector(
               onTap: () => Get.to(() => const NotificationScreen()),
               child: Container(
                 width: AppSizes.notificationIconSize,
@@ -72,8 +80,8 @@ class WelcomeSign extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

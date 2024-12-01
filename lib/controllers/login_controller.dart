@@ -71,30 +71,55 @@ class LoginController extends GetxController {
       image: isImagePicked.value
           ? FileImage(File(profileImage.value))
           : AssetImage('images/default_image.png') as ImageProvider,
-      avatarRadius: 60,
-      cameraRadius: 20,
-      cameraBackgroundColor: AppColors.backgroundLogin,
-      cameraIcon: Icon(Icons.add_a_photo, color: AppColors.textLight),
+      avatarRadius: 80,
+      cameraRadius: 25,
+      cameraBackgroundColor: AppColors.primary,
+      cameraIcon: Icon(Icons.camera_alt, color: AppColors.textLight, size: 24),
       onCameraTap: () {
         showModalBottomSheet(
           context: context,
+          backgroundColor: Colors.transparent,
           builder: (context) {
             return Container(
-              padding: const EdgeInsets.all(AppSizes.spaceM),
-              height: 230,
+              padding: const EdgeInsets.all(AppSizes.spaceL),
+              height: 280,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(25),
+                    topRight: Radius.circular(25),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      spreadRadius: 1,
+                      blurRadius: 10,
+                    )
+                  ]),
               child: Column(
                 children: [
-                  const Text(
-                    "Pilih dari",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  Container(
+                    width: 50,
+                    height: 5,
+                    decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(10)),
+                  ),
+                  SizedBox(height: AppSizes.spaceL),
+                  Text(
+                    "Pilih Sumber Foto",
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.textDark),
                   ),
                   SizedBox(height: AppSizes.spaceXL),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       buildOption(
                         icon: Icons.camera_alt,
-                        label: "Camera",
+                        label: "Kamera",
                         onTap: () {
                           Navigator.pop(context);
                           pickImageFromCamera(context);
@@ -102,7 +127,7 @@ class LoginController extends GetxController {
                       ),
                       buildOption(
                         icon: Icons.photo_library,
-                        label: "Gallery",
+                        label: "Galeri",
                         onTap: () {
                           Navigator.pop(context);
                           pickImageFromGallery(context);

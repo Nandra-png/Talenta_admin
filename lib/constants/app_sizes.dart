@@ -79,4 +79,7 @@ class AppSizes {
   // Tag Container
   static const double tagHeight = 32.0;
   static const double tagSpacing = 8.0;
+
+  // Button Heights
+  static const double buttonHeight = 50.0;
 }

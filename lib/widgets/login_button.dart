@@ -27,10 +27,12 @@ class ReusableButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: isFullWidth ? double.infinity : null, // This is controlled by the parent widget
+      width: isFullWidth
+          ? double.infinity
+          : null, // This is controlled by the parent widget
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor ?? AppColors.primary,
+          backgroundColor: backgroundColor ?? AppColors.secondary,
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppSizes.radiusXL),

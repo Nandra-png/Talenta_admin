@@ -3,8 +3,6 @@ import 'package:talentaku/models/categories_event.dart';
 import 'package:talentaku/constants/app_colors.dart';
 import 'package:talentaku/constants/app_text_styles.dart';
 import 'package:talentaku/constants/app_sizes.dart';
-import 'package:talentaku/constants/app_decorations.dart';
-
 class CategoriesLine extends StatelessWidget {
   final CategoryEvent categoryEvent;
 
@@ -25,11 +23,15 @@ class CategoriesLine extends StatelessWidget {
           Container(
             width: double.infinity,
             height: AppSizes.categoryLineHeight * 0.65,
-            decoration: AppDecorations.categoryLineDecoration,
+            decoration: BoxDecoration(
+              color: AppColors.secondary,
+              borderRadius: BorderRadius.circular(AppSizes.radiusS),
+            ),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: EdgeInsets.only(left: AppSizes.categoryImageSize + AppSizes.paddingXL),
+                padding: EdgeInsets.only(
+                    left: AppSizes.categoryImageSize + AppSizes.paddingXL),
                 child: Text(
                   categoryEvent.title,
                   style: AppTextStyles.bodyLarge.copyWith(

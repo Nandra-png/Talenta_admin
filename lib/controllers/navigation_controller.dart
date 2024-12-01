@@ -6,4 +6,4 @@ class NavigationController extends GetxController {
   void changeIndex(int index) {
     selectedIndex.value = index;
   }
-} 
+}

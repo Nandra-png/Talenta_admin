@@ -37,7 +37,7 @@ class LaporanPreviewCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(AppSizes.paddingL),
               decoration: BoxDecoration(
-                color: AppColors.primaryLight,
+                color: AppColors.secondaryLight,
                 borderRadius: BorderRadius.circular(AppSizes.radiusXL),
               ),
               child: Row(
