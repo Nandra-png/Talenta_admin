@@ -18,6 +18,7 @@ class InfoPopup extends StatelessWidget {
     required String message,
     IconData icon = Icons.info_outline,
     Color? iconColor,
+    List<Widget>? actions,
   }) {
     Get.dialog(
       InfoPopup(
@@ -26,6 +27,7 @@ class InfoPopup extends StatelessWidget {
           message: message,
           icon: icon,
           iconColor: iconColor,
+          actions: actions,
         ),
       ),
     );
@@ -62,26 +64,32 @@ class InfoPopup extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             SizedBox(height: AppSizes.spaceL),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () => Get.back(),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  padding: EdgeInsets.symmetric(vertical: AppSizes.paddingL),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(AppSizes.radiusM),
+            if (popupEvent.actions != null) ...[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: popupEvent.actions!,
+              ),
+            ] else
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () => Get.back(),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primary,
+                    padding: EdgeInsets.symmetric(vertical: AppSizes.paddingL),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(AppSizes.radiusM),
+                    ),
                   ),
-                ),
-                child: Text(
-                  'Mengerti',
-                  style: AppTextStyles.bodyLarge.copyWith(
-                    color: AppColors.textLight,
-                    fontWeight: FontWeight.w600,
+                  child: Text(
+                    'Mengerti',
+                    style: AppTextStyles.bodyLarge.copyWith(
+                      color: AppColors.textLight,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),
-            ),
           ],
         ),
       ),

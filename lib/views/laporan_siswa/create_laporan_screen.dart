@@ -9,6 +9,7 @@ import 'package:talentaku/widgets/laporan_form_section.dart';
 import 'package:talentaku/widgets/catatan_section.dart';
 import 'package:talentaku/widgets/photo_upload_section.dart';
 import 'package:talentaku/widgets/submit_button.dart';
+import 'package:talentaku/widgets/info_popup.dart';
 
 class CreateLaporanScreen extends StatelessWidget {
   final Map<String, String> student;
@@ -64,7 +65,7 @@ class CreateLaporanScreen extends StatelessWidget {
               PhotoUploadSection(),
               SizedBox(height: AppSizes.spaceXL),
               SubmitButton(
-                onPressed: controller.submitLaporan,
+                onPressed: () => _showConfirmationDialog(context, controller),
                 text: 'Kirim Laporan',
               ),
             ],
@@ -90,5 +91,65 @@ class CreateLaporanScreen extends StatelessWidget {
       );
     }
     return Column(children: sectionWidgets);
+  }
+
+  void _showConfirmationDialog(
+      BuildContext context, CreateLaporanController controller) {
+    InfoPopup.show(
+      title: 'Konfirmasi Pengiriman',
+      message: 'Apakah Anda yakin ingin mengirim laporan ini?\nPastikan semua data telah terisi dengan benar.',
+      icon: Icons.help_outline,
+      iconColor: AppColors.secondary,
+      actions: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Container(
+              margin: EdgeInsets.only(right: AppSizes.spaceM),
+              child: TextButton(
+                onPressed: () => Get.back(),
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: AppSizes.paddingXL,
+                    vertical: AppSizes.paddingM,
+                  ),
+                ),
+                child: Text(
+                  'Batal',
+                  style: AppTextStyles.bodyMedium.copyWith(
+                    color: AppColors.textPrimary,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Get.back();
+                controller.submitLaporan();
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.secondary,
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppSizes.paddingXL,
+                  vertical: AppSizes.paddingM,
+                ),
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(AppSizes.radiusM),
+                ),
+              ),
+              child: Text(
+                'Ya, Kirim',
+                style: AppTextStyles.bodyMedium.copyWith(
+                  color: AppColors.textLight,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
   }
 }
